@@ -1,0 +1,44 @@
+/*either yot include that house or leave that one.
+if you include that house ,then take the max of the houses leaving the adjacent ones.
+input:
+5
+4 8 3 2 10
+dp problem as it can be divided into subproblem anf the solutions of it are overlapping.
+if include 4,then max=4.
+if donot include 4,then go to next house and now max is 8.
+3rd house ,if u include 3 then u cannot take 8,if have u include 4,so max becomes 7.
+but if u donot include 3 ,max as of now =8.
+dp[i]=max(dp[i-1],a[i]+dp[i-2]);
+*/
+
+#include <iostream>
+using namespace std;
+
+int max(int a,int b)
+{
+    return(a>b)?a:b;
+}
+
+int main() {
+	//code
+	int t,n,i;
+	cin>>t;
+	while(t-->0)
+	{
+	    cin>>n;
+	    int a[n];
+	    for(i=0;i<n;i++)
+	    cin>>a[i];
+	    int dp[n];
+	    dp[0]=a[0];
+	    dp[1]=max(a[0],a[1]);
+	    for(i=2;i<n;i++)
+	    {
+	        dp[i]=max(dp[i-1],a[i]+dp[i-2]);
+	        
+	    }
+	    cout<<dp[n-1]<<endl;
+	}
+	
+	return 0;
+}
