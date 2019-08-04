@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	//code
+	int t,n,max_cap,i;
+	cin>>t;
+	while(t-->0)
+	{
+	    cin>>n;
+	    cin>>max_cap;
+	    int value[n];
+	    int weight[n];
+	    for(i=0;i<n;i++)
+	    cin>>value[i];
+	    for(i=0;i<n;i++)
+	    cin>>weight[i];
+	    
+	    int dp[n+1][max_cap+1]={0};
+	    for( i=0;i<=n;i++)
+	    {
+	        for(int w=0;w<=max_cap;w++)
+	        {
+	            if(w==0||i==0)
+	            dp[i][w]=0;
+	            else
+	            if(weight[i-1]<=w)
+	            dp[i][w]=max(dp[i-1][w],value[i-1]+dp[i][w-weight[i-1]]);
+	            else
+	            dp[i][w]=dp[i-1][w];
+	        }
+	    }
+	    cout<<dp[n][max_cap]<<endl;
+	}
+	return 0;
+}
