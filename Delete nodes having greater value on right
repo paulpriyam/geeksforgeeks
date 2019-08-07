@@ -1,0 +1,43 @@
+//using array
+Node *compute(Node *head)
+{
+    
+    struct Node*temp1=head;
+    int arr[10000];
+    int i=0;
+    while(temp1)
+    {
+        arr[i++]=temp1->data;
+        temp1=temp1->next;
+    }
+    int len=i;
+    reverse(arr,arr+len);
+    int max=INT_MIN;
+    int j=0;
+    int a1[1000]={0};
+    for(i=0;i<len;i++)
+    {
+        if(arr[i]>=max)
+        {
+            max=arr[i];
+            a1[j++]=max;
+        }
+    }
+    reverse(a1,a1+j);
+   // for(i=0;i<j;i++)
+    //cout<<a1[i];
+    i=0;
+    struct Node*temp2=head;
+    struct Node*temp3=head;
+    while(i<j)
+    {
+        temp2->data=a1[i];
+        temp3=temp2;
+        temp2=temp2->next;
+        i++;
+        
+    }
+    temp3->next=NULL;
+    return head;
+// your code goes here
+}
