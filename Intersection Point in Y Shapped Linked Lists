@@ -1,0 +1,54 @@
+/*count the number of nodes in each linked list.
+c1=number of nodes in LL1
+c2=number of nodes in LL2
+check (c1>c2) or (c2>c1) and bring the pointer pointing to the same location from the end of both the linked list.And now traverse both the linked 
+list until both the pointer meet.
+The meeting point is the intersection point.
+*/
+
+int intersectPoint(Node* head1, Node* head2)
+{
+    struct Node*temp1=head1;
+    struct Node*temp2=head2;
+    struct Node*temp3=head1;
+    struct Node*temp4=head2;
+    int c1=0,c2=0;
+    while(temp1)
+    {
+        c1++;
+        temp1=temp1->next;
+    }
+    while(temp2)
+    {
+        c2++;
+        temp2=temp2->next;
+    }
+    //cout<<c2-c1;
+   if(c1>c2)
+    {
+        temp3=head1;
+        int c=c1-c2;
+        while(c)
+        {
+           temp3=temp3->next;
+           c--;
+        }
+    }
+    if(c2>c1)
+    {
+        temp4=head2;
+        int c=c2-c1;
+        while(c)
+        {
+            temp4=temp4->next;
+            c--;
+        }
+    }
+    while(temp3!=temp4)
+    {
+        temp3=temp3->next;
+        temp4=temp4->next;
+    }
+    return temp4->data;
+    // Your Code Here
+}
